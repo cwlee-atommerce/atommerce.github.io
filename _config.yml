@@ -16,7 +16,8 @@
 
 ## => Site Settings
 ##############################
-remote_theme : kitian616/jekyll-TeXt-theme
+remote_theme : mmistakes/minimal-mistakes
+#remote_theme : kitian616/jekyll-TeXt-theme
 text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url     : "https://atommerce.github.io" # the base hostname & protocol for your site e.g. https://www.someone.com
