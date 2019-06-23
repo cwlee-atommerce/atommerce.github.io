@@ -226,4 +226,4 @@ plugins:
   - jekyll-sitemap
   - jemoji
 
-theme: jekyll-theme-cayman
+theme: jekyll-theme-minimal
