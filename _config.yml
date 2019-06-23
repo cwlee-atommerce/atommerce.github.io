@@ -1,8 +1,8 @@
 # SITE CONFIGURATION
 baseurl: ""
 url: "https://atommerce.github.io"
-title: Type on Strap # site's title
-description: "A website with blog posts and pages" # used by search engines
+title: 아토머스 기술 블로그 # site's title
+description: "Atommerce Technical Blog" # used by search engines
 
 defaults:
   - 
@@ -19,9 +19,10 @@ theme_settings:
   favicon: assets/favicon.ico
 
   # Header and footer text
-  header_text: Change header text in <code>_config.yml</code>
+  header_text: 아토머스 기술 블로그
   header_feature_image: assets/img/pexels/triangular.jpeg
   footer_text: >
+    <span>Copyright</span> &copy; <a href="http://www.atommerce.com/" target="_blank">Atommerce Corp.</a> <span>All Rights Reserved.</span></p>
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
   # Icons
@@ -33,7 +34,7 @@ theme_settings:
   facebook:
   flickr:
   gitlab:
-  github: "sylhare"
+  github: "atommerce"
   google_plus:
   instagram:
   keybase:
