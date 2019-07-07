@@ -1,8 +1,8 @@
 # SITE CONFIGURATION
 baseurl: ""
 url: "https://atommerce.github.io"
-title: Atommerce Tech Blog # site's title
-description: "Atommerce Technical Blog" # used by search engines
+title: Atommerce Tech # site's title
+description: "아토머스 기술 블로그" # used by search engines
 
 defaults:
   - 

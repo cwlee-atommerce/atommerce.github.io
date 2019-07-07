@@ -1,14 +1,13 @@
 ---
 layout: page
 title: Gallery
-subtitle: From the pexels folder
+subtitle: 아토머스 발자취
 permalink: /gallery/
 gallery_path: "assets/img/pexels"
-tags: [Gallery, Photo]
+tags: [아토머스, Atommerce, 아토머스 발자취, Atommerce History]
 ---
 
-This is a photo gallery made from the static files in the `assets/img/pexels` folder. 
-I wanted to create automatically a simple gallery from a folder without having to create a markdown page as you would for the portfolio.
+아토머스와 아토머스 팀원들의 생생한 시간들을 공유합니다.
 
 
 {% include gallery.html gallery_path=page.gallery_path %}
