@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/2019/07/07/tonyji_utf8mb4.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Atommerce Tech Blog" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>MySQL에서 이모지 사용하기 | Atommerce Tech Blog</title>
+<meta property="og:title" content="MySQL에서 이모지 사용하기" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="[부제: MySQL에서 완전한 유니코드 지원 방법] 올해 초 각고의 노력 끝에 아토머스의 오랜 숙원 사업인 ‘마인드카페 프로’를 런칭하게 되었습니다. 마인드카페 프로는 기존의 오프라인 대면 심리 상담 방식을 온라인 익명 채팅 및 전화상담으로 구현한 서비스입니다. 오늘은 마인드카페 프로의 기능 중 채팅 상담을 구현하면서 겪은 이슈인 이모지 사용을 위한 MySQL 인코딩에 대해 말씀드리려고 합니다." />
+<meta property="og:description" content="[부제: MySQL에서 완전한 유니코드 지원 방법] 올해 초 각고의 노력 끝에 아토머스의 오랜 숙원 사업인 ‘마인드카페 프로’를 런칭하게 되었습니다. 마인드카페 프로는 기존의 오프라인 대면 심리 상담 방식을 온라인 익명 채팅 및 전화상담으로 구현한 서비스입니다. 오늘은 마인드카페 프로의 기능 중 채팅 상담을 구현하면서 겪은 이슈인 이모지 사용을 위한 MySQL 인코딩에 대해 말씀드리려고 합니다." />
+<link rel="canonical" href="http://localhost:4000/2019/07/07/tonyji_utf8mb4.html" />
+<meta property="og:url" content="http://localhost:4000/2019/07/07/tonyji_utf8mb4.html" />
+<meta property="og:site_name" content="Atommerce Tech Blog" />
+<meta property="og:image" content="http://localhost:4000/assets/img/triangle.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-07T00:00:00+09:00" />
+<script type="application/ld+json">
+{"name":null,"description":"[부제: MySQL에서 완전한 유니코드 지원 방법] 올해 초 각고의 노력 끝에 아토머스의 오랜 숙원 사업인 ‘마인드카페 프로’를 런칭하게 되었습니다. 마인드카페 프로는 기존의 오프라인 대면 심리 상담 방식을 온라인 익명 채팅 및 전화상담으로 구현한 서비스입니다. 오늘은 마인드카페 프로의 기능 중 채팅 상담을 구현하면서 겪은 이슈인 이모지 사용을 위한 MySQL 인코딩에 대해 말씀드리려고 합니다.","url":"http://localhost:4000/2019/07/07/tonyji_utf8mb4.html","headline":"MySQL에서 이모지 사용하기","dateModified":"2019-07-07T00:00:00+09:00","datePublished":"2019-07-07T00:00:00+09:00","sameAs":null,"@type":"BlogPosting","author":null,"image":"http://localhost:4000/assets/img/triangle.png","publisher":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/07/07/tonyji_utf8mb4.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>MySQL에서 이모지 사용하기 | Atommerce Tech Blog</title>
+    <meta name="description" content="[부제: MySQL에서 완전한 유니코드 지원 방법]올해 초 각고의 노력 끝에 아토머스의 오랜 숙원 사업인 ‘마인드카페 프로’를 런칭하게 되었습니다.마인드카페 프로는 기존의 오프라인 대면 심리 상담 방식을 온라인 익명 채팅 및 전화상담으로 구현한 서비스입니다.오늘은 마인드카페 프로의...">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+    
+    <!-- Logo and title -->
+	<div class="branding">
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/triangle.png" />
+		</a>
+
+		<h1 class="site-title">
+			<a aria-label="Atommerce Tech Blog" href="/">
+        Atommerce Tech Blog
+      </a>
+		</h1>
+	</div>
+    
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+    
+    <!-- Menu -->
+    <ul class="hide">
+        
+        
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Gallery" title="Gallery" href="/gallery/">
+                     Gallery 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Portfolio" title="Portfolio" href="/portfolio/">
+                     Portfolio 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fa fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+    </ul>
+        
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header id="main" style="">
+    
+      <h1 id="MySQL%EC%97%90%EC%84%9C+%EC%9D%B4%EB%AA%A8%EC%A7%80+%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0" class="title">MySQL에서 이모지 사용하기</h1>
+      
+
+<div class="post-info">
+    <p class="meta">
+      momotony - July 7, 2019
+    </p></div>
+
+    
+  </header>
+  <section class="post-content">
+  
+      <h3 id="부제-mysql에서-완전한-유니코드-지원-방법">[부제: MySQL에서 완전한 유니코드 지원 방법]</h3>
+
+<p><br />
+올해 초 각고의 노력 끝에 아토머스의 오랜 숙원 사업인 ‘마인드카페 프로’를 런칭하게 되었습니다.<br />
+마인드카페 프로는 기존의 오프라인 대면 심리 상담 방식을 온라인 익명 채팅 및 전화상담으로 구현한 서비스입니다.<br />
+오늘은 마인드카페 프로의 기능 중 채팅 상담을 구현하면서 겪은 이슈인 이모지 사용을 위한 MySQL 인코딩에 대해 말씀드리려고 합니다.
+<!--more--></p>
+
+<p>사실 필자는 오랜 기간동안 백엔드 프로그래밍을 해왔는데, MySQL에서 다국어 지원을 위해서는 ‘utf8’ 을 사용해야 한다고 알고 있었고 항상 기본 인코딩으로 ‘utf8’을 사용해 왔습니다. 그런데, 채팅에서 이모지 사용을 테스트하던 중 이모지가 제대로 표현되지 않는 오류를 발견하고 이를 분석하던 중 새로운 사실을 알게 되어 공유드리려고 합니다.<br /></p>
+
+<p>본론에 들어가기 전에 우선 인코딩에 대해서 간략하게 정리해 보도록 하겠습니다.
+<br /><br /></p>
+
+<h4 id="히스토리">히스토리</h4>
+
+<p>컴퓨터에서 문자를 표시하기 위해 각 문자에 수치화된 코드값을 부여한 것을 ‘문자 집합’이라고 합니다.
+그리고, 이 문자 집합을 컴퓨터가 이해할 수 있도록 비트 단위로 변환하는 작업을 ‘인코딩’이라고 합니다.</p>
+
+<p>컴퓨터가 발명된 후, 각 나라마다 자국의 언어에 맞는 문자 집합을 정의해서 사용해왔는데, 이러다 보니 인코딩 방식이 서로 달라서 여러 국가의 언어를 동시에 표시하는데 문제가 발생하게 됩니다.
+<br />이에 따라, 전 세계 모든 문자에 대한 표준 문자 집합인 ‘유니코드’가 탄생하게 되었습니다. <br />유니코드에 대한 자세한 설명은 <a href="https://ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C">위키백과의 설명</a>을 참고하세요.<br /></p>
+
+<p>유니코드의 주요 인코딩 방식에는 UTF-8, UTF-16, UTF-32등이 있는데, 이 중 UTF-16은 기본 다국어 평면(BMP, Basic multilingual plane)에 속하는 기본 문자들은 16비트(즉, 2바이트)로 그 이상의 문자는 32비트로 인코딩하고, UTF-32는 모든 문자를 32비트(즉, 4바이트)의 고정된 크기로 인코딩하도록 정의되어 있습니다. <br />
+그 중, UTF-8은 문자에 따라 8비트부터 32비트(즉, 1바이트~4바이트)까지 표현되는 가변 길이 문자 인코딩 방식으로 ASCII 코드와 호환되는 동시에 유니코드를 표현할 수 있어 가장 많이 사용된다고 합니다.<br /></p>
+
+<p>그렇다면, MySQL ‘utf8’이라는 인코딩이 무엇을 의미하는지 부터 알아보겠습니다.<br />
+MySQL에서 유니코드에 대한 지원은 2003년에 발표된 <a href="http://mysql.localhost.net.ar/doc/refman/4.1/en/news-4-1-0.html">MySQL 4.1 버전</a>부터이며, 위에서 설명드린 유니코드의 표준 인코딩 방식 중 UTF-8 방식을 ‘utf8’이라는 명칭으로 지원하면서 시작되었습니다.<br /></p>
+
+<p>그런데, 문제는 현재의 UTF-8 표준인 <a href="https://tools.ietf.org/html/rfc3629">RFC 3629</a>가 제정되기 이전이어서 당시의 UTF-8 표준인 <a href="https://www.ietf.org/rfc/rfc2279.txt">RFC 2279</a>를 바탕으로 개발이 진행되었다는 것입니다. <br />
+RFC 2279에서는 한 문자당 6바이트를 할당하는 방식이었고, MySQL 개발자들은 정확한 이유는 밝혀지지 않았지만 3바이트까지만으로 제한한 방식으로 ‘utf8’을 구현한 것 입니다. <br />
+이에 대한 내용을 분석한 <a href="https://medium.com/@adamhooper/in-mysql-never-use-utf8-use-utf8mb4-11761243e434">다음 블로그</a>에서 꽤 설득력 있는 원인을 찾을 수 있습니다.</p>
+
+<p>MySQL에서는 그 이후에도 별다른 공지 없이 UTF-8을 ‘utf8’로 사용하면 된다는 식으로 가이드를 제공해왔습니다. <br />
+따라서, 많은 개발자가 별다른 고민없이 이를 따르게 됐죠. 그러던 중, MySQL에서는 현재 표준에 맞게 4바이트를 모두 지원하는 인코딩 방식인 ‘utf8mb4’를 포함한 새로운 버전인 <a href="https://dev.mysql.com/doc/relnotes/mysql/5.5/en/news-5-5-3.html">MySQL 5.5.3 버전</a>을 2010년에 공식 발표하게 됩니다.<br />
+원래대로라면 ‘utf8’은 UTF-8을 완전히 지원하지 않기 때문에 이를 완전히 지원하는 ‘utf8mb4’를 사용하도록 충분한 가이드가 제공되었어야겠지만, MySQL은 그러질 않았어요.<br />
+그래서, 현재까지도 많은 개발자가 MySQL에서 UTF-8을 ‘utf8’로 잘못 인식해서 이모지와 같은 일부 문자들이 제대로 표시되지 않는 황당한 오류를 겪게 되는 것이죠. <br />
+자, 그렇다면 이제 기존의 utf8 인코딩을 utf8mb4로 바꾸는 방법을 알아보도록 하시죠.
+<br /><br /></p>
+
+<h4 id="utf8mb4-설정하기">utf8mb4 설정하기</h4>
+
+<p>우선, MySQL의 my.cnf 설정파일을 다음과 같이 수정합니다.</p>
+
+<blockquote>
+  <p>$ sudo vi /etc/my.cnf</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">   <span class="p">[</span><span class="n">client</span><span class="p">]</span>
+   <span class="n">default</span><span class="o">-</span><span class="n">character</span><span class="o">-</span><span class="n">set</span> <span class="o">=</span> <span class="n">utf8mb4</span>
+ 
+   <span class="p">[</span><span class="n">mysqld</span><span class="p">]</span>
+   <span class="n">character</span><span class="o">-</span><span class="n">set</span><span class="o">-</span><span class="n">server</span> <span class="o">=</span> <span class="n">utf8mb4</span>
+   <span class="n">collation</span><span class="o">-</span><span class="n">server</span> <span class="o">=</span> <span class="n">utf8mb4_unicode_ci</span>
+ 
+   <span class="p">[</span><span class="n">mysql</span><span class="p">]</span>
+   <span class="n">default</span><span class="o">-</span><span class="n">character</span><span class="o">-</span><span class="n">set</span> <span class="o">=</span> <span class="n">utf8mb4</span></code></pre></figure>
+
+<p><br />
+설정을 변경 한 후에는 다음과 같이 MySQL 서버를 재시작 시켜주세요.</p>
+<blockquote>
+  <p>$ sudo service mysqld restart</p>
+</blockquote>
+
+<p>그런 다음, 다음과 같이 MySQL 터미널로 접속해서 변수들이 잘 변경되었는지 확인해 봅니다.</p>
+<blockquote>
+  <p>$ mysql -uroot -p
+mysql&gt; SHOW VARIABLES LIKE ‘char%’; SHOW VARIABLES LIKE ‘collation%’;</p>
+</blockquote>
+
+<p><img src="/assets/img/tonyji/utf8mb4/mysql_show_variables.png" alt="MySQL Variables" /></p>
+
+<p>위와 같이 보이신다면 잘 변경된 것입니다. 이때, character_set_system은 ‘utf8’로 표시되는 것이 정상입니다.
+<br /><br /></p>
+
+<h4 id="업데이트를-위한-체크-사항">업데이트를 위한 체크 사항</h4>
+<p>마지막으로, 기존 테이블을 업데이트하려면 다음과 같이 진행하면 됩니다.<br />
+utf8mb4는 utf8과 100% 호환되기 때문에 문자가 깨질 염려는 하지 않으셔도 됩니다. <br />
+다만, 3바이트였던 자릿수가 4바이트로 늘어나면서 칼럼의 최대 길이와 인덱스 키의 길이를 체크해야 합니다.<br /></p>
+
+<p>예를 들어, TINYTEXT 칼럼은 255바이트까지 저장할 수 있는데,  utf8인 경우 3바이트 문자 기준 85개, utf8mb4의 경우 4바이트 문자 기준 63개를 저장할 수 있습니다.<br />
+따라서, 기존에 TINYTEXT 칼럼을 사용한다면 최대 입력 문자 수를 줄이거나 TEXT와 같은 필드로 칼럼 타입을 수정해야겠죠. <br />
+인덱스 키의 경우도 InnoDB 스토리지 엔진은 최대 767바이트까지만 인덱스를 저장할 수 있는데, 이를 3바이트(utf8인 경우)으로 나누면 255자, 4바이트(utf8mb4)로 나누면 191자까지만 인덱싱이 가능하다는 의미입니다. <br />
+이 경우, VARCHAR(255)로 정의된 필드에 인덱스가 걸려있었다면, 이 필드에 인덱스를 유지하기 위해서는 VARCHAR(191)로 수정해야 합니다. <br /></p>
+
+<p>위와 같은 체크가 완료되었다면 다음과 같이 테이블을 업데이트시켜 주시면 됩니다.<br /></p>
+
+<blockquote>
+  <p>mysql&gt; use 데이터베이스명
+mysql&gt; ALTER TABLE 테이블명 CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</p>
+</blockquote>
+
+<p>참고로 파이썬에서 SQLAlchemy를 사용하실때 utf8mb4 사용을 위한 설정은 다음과 같습니다.<br /></p>
+
+<blockquote>
+  <p>$ vi config.py
+SQLALCHEMY_DATABASE_URI=mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}?charset=utf8mb4</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>여기까지 잘 따라오셨다면, 이제부터 이모지 문자가 잘 저장되는 것을 확인하실 수 있으실 겁니다.<br />
+프로그래밍의 세계에서 인코딩은 난해한 영역에 해당합니다. 따라서, 이 부분은 많이 공부하고 디테일하게 파헤쳐볼 만 하답니다.<br /><br />
+더 깊은 내용을 공부하고 싶으신 분들을 위해 아래 참고 링크를 정리했습니다.<br />
+시간 되실 때 정독하시면 좋을 것 같네요.<br />
+감사합니다.<br /></p>
+
+<p><br />
+<br /></p>
+<h4 id="참고-자료">참고 자료</h4>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Unicode">유니코드 설명(출처:위키백과)</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8 설명(출처:위키백과)</a></li>
+  <li><a href="https://d2.naver.com/helloworld/19187">한글 인코딩의 이해(출처:네이버D2 기술블로그)</a></li>
+  <li><a href="https://mathiasbynens.be/notes/mysql-utf8mb4">How to support full Unicode in MySQL databases</a>
+<br /><br /></li>
+</ul>
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  <div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2019/07/07/tonyji_utf8mb4.html" target="_blank" title="Share on Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2019/07/07/tonyji_utf8mb4.html&text=MySQL%EC%97%90%EC%84%9C+%EC%9D%B4%EB%AA%A8%EC%A7%80+%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0%20%7C%20Atommerce+Tech+Blog:%20http://localhost:4000/2019/07/07/tonyji_utf8mb4.html" target="_blank" title="Tweet">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+            
+        <li>
+            <a href="http://www.reddit.com/submit?url=http://localhost:4000/2019/07/07/tonyji_utf8mb4.html&title=MySQL%EC%97%90%EC%84%9C+%EC%9D%B4%EB%AA%A8%EC%A7%80+%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0%20%7C%20Atommerce+Tech+Blog" target="_blank" title="Share on Reddit">
+			<i class="fa fa-reddit-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Reddit</span>
+		</a>
+        </li>
+           
+        <li>
+            <a href="mailto:?subject=MySQL%EC%97%90%EC%84%9C+%EC%9D%B4%EB%AA%A8%EC%A7%80+%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0%20%7C%20Atommerce+Tech+Blog&body=:%20http://localhost:4000/2019/07/07/tonyji_utf8mb4.html" target="_blank" title="Email">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+   <!-- Tag list -->
+  
+  
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button" href="/tags#UTF-8">
+      <p><i class="fa fa-tag fa-fw"></i> UTF-8</p>
+    </a>
+    
+    <a class="button" href="/tags#mysql">
+      <p><i class="fa fa-tag fa-fw"></i> mysql</p>
+    </a>
+    
+    <a class="button" href="/tags#utf8">
+      <p><i class="fa fa-tag fa-fw"></i> utf8</p>
+    </a>
+    
+    <a class="button" href="/tags#utf8mb4">
+      <p><i class="fa fa-tag fa-fw"></i> utf8mb4</p>
+    </a>
+    
+    <a class="button" href="/tags#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C">
+      <p><i class="fa fa-tag fa-fw"></i> 유니코드</p>
+    </a>
+    
+    <a class="button" href="/tags#%EC%9D%B4%EB%AA%A8%EC%A7%80">
+      <p><i class="fa fa-tag fa-fw"></i> 이모지</p>
+    </a>
+    
+  </div>
+</footer>
+
+
+</article>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <p>Next post</p>
+        <a alt="슬랙에서 웹훅 연동하기" href="/2019/07/08/tonyji_slack-webhook.html">
+            슬랙에서 웹훅 연동하기
+        </a>
+    </div>
+    
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  
+  header#main {
+    background-repeat:no-repeat;
+    background-image: url('');
+  }
+</style>
+    </div>
+    
+<footer class="site-footer">
+    <p class="text"><span>Copyright</span> &copy; <a href="http://www.atommerce.com/" target="_blank">Atommerce Corp.</a> <span>All Rights Reserved.</span></p> Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+<li>
+	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/atommerce" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+  </body>
+</html>
