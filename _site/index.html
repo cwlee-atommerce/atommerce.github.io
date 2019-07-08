@@ -17,8 +17,11 @@
     <link rel="canonical" href="http://localhost:4000/">
 
     <!-- RSS -->
-    <link rel="alternate" type="application/atom+xml" title="Atommerce Tech Blog" href="http://localhost:4000/feed.xml"/>
+    <link rel="alternate" type="application/atom+xml" title="Atommerce Tech" href="http://localhost:4000/feed.xml"/>
     
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700&display=swap" rel="stylesheet">
+
     
 
     <!-- KaTeX 0.8.3 -->
@@ -32,22 +35,22 @@
 
     <!-- seo tags -->
     <!-- Begin Jekyll SEO tag v2.3.0 -->
-<title>Atommerce Tech Blog | Atommerce Technical Blog</title>
-<meta property="og:title" content="Atommerce Tech Blog" />
+<title>Atommerce Tech | 아토머스 기술 블로그</title>
+<meta property="og:title" content="Atommerce Tech" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Atommerce Technical Blog" />
-<meta property="og:description" content="Atommerce Technical Blog" />
+<meta name="description" content="아토머스 기술 블로그" />
+<meta property="og:description" content="아토머스 기술 블로그" />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Atommerce Tech Blog" />
+<meta property="og:site_name" content="Atommerce Tech" />
 <meta property="og:image" content="http://localhost:4000/assets/img/triangle.png" />
 <script type="application/ld+json">
-{"name":"Atommerce Tech Blog","description":"Atommerce Technical Blog","url":"http://localhost:4000/","headline":"Atommerce Tech Blog","dateModified":null,"datePublished":null,"sameAs":null,"@type":"WebSite","author":null,"image":"http://localhost:4000/assets/img/triangle.png","publisher":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+{"name":"Atommerce Tech","description":"아토머스 기술 블로그","author":null,"@type":"WebSite","url":"http://localhost:4000/","publisher":null,"image":"http://localhost:4000/assets/img/triangle.png","headline":"Atommerce Tech","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <!-- Manual seo tags -->
     <!--
-    <title> Atommerce Tech Blog</title>
+    <title> Atommerce Tech</title>
     <meta name="description" content="">
     -->
 </head>
@@ -62,8 +65,8 @@
 		</a>
 
 		<h1 class="site-title">
-			<a aria-label="Atommerce Tech Blog" href="/">
-        Atommerce Tech Blog
+			<a aria-label="Atommerce Tech" href="/">
+        Atommerce Tech
       </a>
 		</h1>
 	</div>
@@ -83,25 +86,11 @@
             
         
             
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" aria-label="About" title="About" href="/about/">
-                     About 
-                </a>
-            </li>
-            
             
         
             
             
         
-            
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" aria-label="Gallery" title="Gallery" href="/gallery/">
-                     Gallery 
-                </a>
-            </li>
             
             
         
@@ -145,7 +134,7 @@
       <div class="home">
   
   <div id="main" class="call-out"
-  style="background-image: url('/assets/img/pexels/triangular.jpeg')">
+  style="background-image: url('')">
     <h1> 아토머스 기술 블로그 </h1>
   </div>
   
@@ -213,22 +202,26 @@
         <span>
           <header>
             <h1>
-              <a aria-label="CSR vs SSR" class="post-link" href="/2019/06/30/CSR-SSR.html">
-                CSR vs SSR
+              <a aria-label="함수형 컴포넌트와 React Hooks" class="post-link" href="/2019/06/30/react-hooks.html">
+                함수형 컴포넌트와 React Hooks
               </a>
             </h1>
             
 
-<div class="post-info">
+<div class="post-info"><a href="/https://github.com/commitnpush" target="_blank">
+      <img src="/assets/img/avatars/commitnpush.jpg">
+    
     <p class="meta">
-      commitnpush - June 30, 2019
-    </p></div>
+      Commitnpush - June 30, 2019
+    </p></a></div>
 
           </header>
           <div class="excerpt">
               들어가며
 
-1990년 월드와이드웹(이하 웹)이 발표된 이래로 웹은 현재까지 많은 발전을 거듭해 왔습니다. 정보를 제공하는 사람은 더 많은 정보를 효율적으로 표현하고 싶어했고 이용자의 요구사항도 높아져만 갔습니다. 이에 부응하기 위해 수 많은 라이브러리, 프레임워크, 개발 패턴들이 탄생하였고 현재의 거대하고 다양한 웹개말 문화가 만들어졌습니다. 그 중 이번 포스팅에서는 AJAX등장 이후의 개발 패턴의 변화라는 주제에 대해 다뤄 보려고 합니다.
+리엑트는 컴포넌트를 정의하는 데 있어서 두 가지의 방법을 사용할 수 있습니다. 첫 번째 방법은 클래스로 정의하는 방법이며 두 번째는 함수로 정의하는 방법이 있습니다. 두 방법의 차이점은 함수로 정의한 컴포넌트는 뷰를 그려내기만 하는 데에 초점이 맞춰진 컴포넌트이기 때문에 컴포넌트 내에서 state를 사용할 수 없으며 생명주기 메서드를 사용할 수 없다는 점입니다. 하지만 리엑트 16.8버전부터 Hooks라는 새로운 기능이 도입되어 함수형 컴포넌트에 날개를 달아 주었습니다. 이번 포스팅에서는 Hooks에 대해 알아보도록 하겠습니다.
+
+
 
 
           </div>
@@ -240,20 +233,24 @@
         <span>
           <header>
             <h1>
-              <a aria-label="Markdown and HTML" class="post-link" href="/2014/11/28/markdown-and-html.html">
-                Markdown and HTML
+              <a aria-label="AJAX의 등장에 따른 웹 개발 패턴의 변화" class="post-link" href="/2019/06/30/CSR-SSR.html">
+                AJAX의 등장에 따른 웹 개발 패턴의 변화
               </a>
             </h1>
             
 
-<div class="post-info">
+<div class="post-info"><a href="/https://github.com/commitnpush" target="_blank">
+      <img src="/assets/img/avatars/commitnpush.jpg">
+    
     <p class="meta">
-      commitnpush - November 28, 2014
-    </p></div>
+      Commitnpush - June 30, 2019
+    </p></a></div>
 
           </header>
           <div class="excerpt">
-              Jekyll supports the use of Markdown with inline HTML tags which makes it easier to quickly write posts with Jekyll, without having to worry too much about text formatting. A sample of the formatting follows.
+              들어가며
+
+1990년 월드와이드웹이 발표된 이래로 웹은 현재까지 많은 발전을 거듭해 왔습니다. 정보를 제공하는 사람은 더 많은 정보를 효율적으로 전달하고 싶어 했고 이용자의 요구사항도 높아져만 갔습니다. 이에 부응하기 위해 수많은 라이브러리, 프레임워크, 개발 패턴들이 탄생하였고 현재의 거대하고 다양한 웹 개발 문화가 만들어졌습니다. 그중 이번 포스팅에서는 AJAX 등장 이후의 개발 패턴의 변화라는 주제에 대해 다뤄 보려고 합니다.
 
 
           </div>

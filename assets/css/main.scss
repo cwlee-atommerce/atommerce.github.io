@@ -26,11 +26,24 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Nanum Barun Gotich', sans-serif;
+  font-weight: 400;
+}
+
+.call-out h1, h1.title{
+  text-shadow: none;
 }
 
 p, div.excerpt{
   line-height: 1.7;
   font-weight:300;
+}
+
+div.excerpt{
+  font-size: 0.9rem;
+}
+
+.site-header .site-title {
+  font-weight: 400;
 }
 
 img{
