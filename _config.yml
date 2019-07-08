@@ -9,7 +9,7 @@ defaults:
     scope:
       path: "" # an empty string here means all files in the project
     values:
-      image: assets/img/triangle.png # seo tag
+      image: assets/img/atommerce_logo.svg # 
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
@@ -20,7 +20,7 @@ theme_settings:
 
   # Header and footer text
   header_text: 아토머스 기술 블로그
-  # header_feature_image: assets/img/pexels/triangular.jpeg
+  header_feature_image: assets/img/pexels/main_bg.jpg
   footer_text: >
     <span>Copyright</span> &copy; <a href="http://www.atommerce.com/" target="_blank">Atommerce Inc.</a> <span>All Rights Reserved.</span></p>
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
