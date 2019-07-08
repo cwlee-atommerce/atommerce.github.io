@@ -19,18 +19,18 @@ excerpt_separator: <!--more-->
 #### 히스토리
 
 컴퓨터에서 문자를 표시하기 위해 각각의 문자에 수치화된 코드값을 부여한 것을 '문자 집합'이라고 합니다. 그리고, 이 문자 집합을 컴퓨터가 이해할 수 있도록 비트 단위로 변환하는 작업을 '인코딩'이라고 합니다. 컴퓨터가 발명된 후, 각 나라마다 자국의 언어에 맞는 문자 집합을 정의해서 사용해왔는데, 이러다 보니 인코딩 방식이 서로 달라서 여러 국가의 언어를 동시에 표시하는데 문제가 발생하게 됩니다. 이에 따라, 전 세계 모든 문자에 대한 표준 문자 집합인 '유니코드'가 탄생하게 되었습니다. 
-유니코드에 대한 자세한 설명은 <a href="https://ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C">위키백과의 설명</a>을 참고하세요.
+유니코드에 대한 자세한 설명은 <a href="https://ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C" target="_blank">위키백과의 설명</a>을 참고하세요.
 <br>
 
 유니코드의 주요 인코딩 방식에는 UTF-8, UTF-16, UTF-32등이 있습니다. 이 중 UTF-16은 기본 다국어 평면(BMP, Basic multilingual plane)에 속하는 기본 문자들은 16비트(즉, 2바이트)로 그 이상의 문자는 32비트로 인코딩하는 방식을 말합니다. UTF-32는 모든 문자를 32비트(즉, 4바이트)의 고정된 크기로 인코딩하도록 정의되어 있습니다. 그 중, UTF-8은 문자에 따라 8비트부터 32비트(즉, 1바이트~4바이트)까지 표현되는 가변 길이 문자 인코딩 방식으로 ASCII 코드와 호환되는 동시에 유니코드를 표현할 수 있어 가장 많이 사용된다고 합니다.
 
-그렇다면, MySQL 'utf8'이라는 인코딩이 무엇을 의미하는지 부터 알아보겠습니다. MySQL에서 유니코드에 대한 지원은 2003년에 발표된 <a href="http://mysql.localhost.net.ar/doc/refman/4.1/en/news-4-1-0.html">MySQL 4.1 버전</a>부터이며, 위에서 설명드린 유니코드의 표준 인코딩 방식 중 UTF-8 방식을 'utf8'이라는 명칭으로 지원하면서 시작되었습니다.
+그렇다면, MySQL 'utf8'이라는 인코딩이 무엇을 의미하는지 부터 알아보겠습니다. MySQL에서 유니코드에 대한 지원은 2003년에 발표된 <a href="http://mysql.localhost.net.ar/doc/refman/4.1/en/news-4-1-0.html" target="_blank">MySQL 4.1 버전</a>부터이며, 위에서 설명드린 유니코드의 표준 인코딩 방식 중 UTF-8 방식을 'utf8'이라는 명칭으로 지원하면서 시작되었습니다.
 <br>
 
-그런데, 문제는 처음 MySQL에서 'utf8'방식을 내놓은 시기가 현재의 UTF-8 표준인 <a href="https://tools.ietf.org/html/rfc3629">RFC 3629</a>가 제정되기 이전이어서, 당시의 UTF-8 표준인 <a href="https://www.ietf.org/rfc/rfc2279.txt">RFC 2279</a>를 바탕으로 개발이 진행되었다는 것입니다. RFC 2279에서는 한 문자당 6바이트를 할당하는 방식이었고, MySQL 개발자들은 (정확한 이유는 밝혀지지 않았지만) 3바이트까지만으로 제한한 방식으로 'utf8'을 구현한 것 입니다. 
-이에 대한 내용을 분석한 <a href="https://medium.com/@adamhooper/in-mysql-never-use-utf8-use-utf8mb4-11761243e434">다음 블로그</a>에서 꽤 설득력 있는 원인을 찾을 수 있습니다.<br>
+그런데, 문제는 처음 MySQL에서 'utf8'방식을 내놓은 시기가 현재의 UTF-8 표준인 <a href="https://tools.ietf.org/html/rfc3629" target="_blank">RFC 3629</a>가 제정되기 이전이어서, 당시의 UTF-8 표준인 <a href="https://www.ietf.org/rfc/rfc2279.txt" target="_blank">RFC 2279</a>를 바탕으로 개발이 진행되었다는 것입니다. RFC 2279에서는 한 문자당 6바이트를 할당하는 방식이었고, MySQL 개발자들은 (정확한 이유는 밝혀지지 않았지만) 3바이트까지만으로 제한한 방식으로 'utf8'을 구현한 것 입니다. 
+이에 대한 내용을 분석한 <a href="https://medium.com/@adamhooper/in-mysql-never-use-utf8-use-utf8mb4-11761243e434" target="_blank">다음 블로그</a>에서 꽤 설득력 있는 원인을 찾을 수 있습니다.<br>
 
-MySQL에서는 그 이후에도 별다른 공지 없이 UTF-8을 사용할 때 'utf8'로 설정하면 된다는 식으로 가이드를 제공해왔습니다. 따라서, 많은 개발자가 별다른 고민없이 이를 따르게 됐습니다. 그러던 중, MySQL에서는 2010년에 현재 표준에 맞게 4바이트를 모두 지원하는 인코딩 방식인 'utf8mb4'가 포함된 <a href="https://dev.mysql.com/doc/relnotes/mysql/5.5/en/news-5-5-3.html">MySQL 5.5.3 버전</a>을 공식 발표하게 됩니다.<br>
+MySQL에서는 그 이후에도 별다른 공지 없이 UTF-8을 사용할 때 'utf8'로 설정하면 된다는 식으로 가이드를 제공해왔습니다. 따라서, 많은 개발자가 별다른 고민없이 이를 따르게 됐습니다. 그러던 중, MySQL에서는 2010년에 현재 표준에 맞게 4바이트를 모두 지원하는 인코딩 방식인 'utf8mb4'가 포함된 <a href="https://dev.mysql.com/doc/relnotes/mysql/5.5/en/news-5-5-3.html" target="_blank">MySQL 5.5.3 버전</a>을 공식 발표하게 됩니다.<br>
 
 상식적으로 'utf8'은 UTF-8을 완전히 지원하지 않기 때문에 이를 완전히 지원하는 'utf8mb4'를 사용하도록 충분한 가이드가 제공 되었어야 한다고 보는데, MySQL은 그러질 않았습니다.
  그래서, 현재까지도 많은 개발자가 MySQL에서 UTF-8을 'utf8'로 잘못 인식해서 이모지와 같은 일부 유니코드 문자들이 제대로 표시되지 않는 황당한 오류를 겪게 되는 것이죠. 결국, 특별한 이유가 없다면 'utf8' (다른 이름으로 'utf8mb3'라고도 합니다)설정을 사용하지 말고, 항상 'utf8mb4'를 사용해야 완벽하게 UTF-8 방식의 유니코드를 지원할 수 있는 것입니다.
@@ -118,10 +118,10 @@ MySQL에서는 그 이후에도 별다른 공지 없이 UTF-8을 사용할 때 '
 <br>
 #### 참고 자료
 
-* <a href="https://en.wikipedia.org/wiki/Unicode">유니코드 설명(출처:위키백과)</a>
-* <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8 설명(출처:위키백과)</a>
-* <a href="https://d2.naver.com/helloworld/19187">한글 인코딩의 이해(출처:네이버D2 기술블로그)</a>
-* <a href="https://mathiasbynens.be/notes/mysql-utf8mb4">How to support full Unicode in MySQL databases</a>
+* <a href="https://en.wikipedia.org/wiki/Unicode" target="_blank">유니코드 설명(출처:위키백과)</a>
+* <a href="https://en.wikipedia.org/wiki/UTF-8" target="_blank">UTF-8 설명(출처:위키백과)</a>
+* <a href="https://d2.naver.com/helloworld/19187" target="_blank">한글 인코딩의 이해(출처:네이버D2 기술블로그)</a>
+* <a href="https://mathiasbynens.be/notes/mysql-utf8mb4" target="_blank">How to support full Unicode in MySQL databases</a>
 <br><br>
 
 
