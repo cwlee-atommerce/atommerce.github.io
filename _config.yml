@@ -20,7 +20,7 @@ theme_settings:
 
   # Header and footer text
   header_text: 아토머스 기술 블로그
-  header_feature_image: assets/img/pexels/triangular.jpeg
+  # header_feature_image: assets/img/pexels/triangular.jpeg
   footer_text: >
     <span>Copyright</span> &copy; <a href="http://www.atommerce.com/" target="_blank">Atommerce Corp.</a> <span>All Rights Reserved.</span></p>
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
@@ -101,6 +101,10 @@ authors:
     name: Sylhare
     avatar: "assets/img/avatars/sylhare_avatar.png"
     url: "https://github.com/sylhare"
+  commitnpush:
+    name: Commitnpush
+    avatar: "assets/img/avatars/commitnpush.jpg"
+    url: "https://github.com/commitnpush"
 
 # PORTFOLIO
 collections:
@@ -111,6 +115,31 @@ collections:
 # BUILD SETTINGS
 markdown: kramdown
 highlighter: rouge
+kramdown:
+  input:          GFM
+  # https://github.com/jekyll/jekyll/pull/4090
+  syntax_highlighter: rouge
+
+  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  # span, block element options fall back to global
+  syntax_highlighter_opts:
+    # Rouge Options › https://github.com/jneen/rouge#full-options
+    css_class: 'highlight'
+    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+syntax_highlighter: rouge
+syntax_highlighter_opts:
+  default_lang: csharp
+  css_class: 'highlight'
+  span:
+    line_numbers: false
+  block:
+    line_numbers: true
+
 sass:
   sass_dir: _sass
   style: :compressed

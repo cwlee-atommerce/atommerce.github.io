@@ -2,3 +2,67 @@
 ---
 
 @import "type-on-strap";
+
+@font-face {
+  font-family: "Nanum Barun Gotich";
+  src: url( '../fonts/nanum-barun-gothic/NanumBarunGothicBold.ttf') format('truetype');
+  font-weight: 700
+}
+@font-face {
+  font-family: "Nanum Barun Gotich";
+  src: url( '../fonts/nanum-barun-gothic/NanumBarunGothic.ttf') format('truetype');
+  font-weight: 400
+}
+@font-face {
+  font-family: "Nanum Barun Gotich";
+  src: url( '../fonts/nanum-barun-gothic/NanumBarunGothicLight.ttf') format('truetype');
+  font-weight: 300
+}
+
+body {
+  font-family: 'Nanum Barun Gotich', sans-serif;
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nanum Barun Gotich', sans-serif;
+  font-weight: 400;
+}
+
+.call-out h1, h1.title{
+  text-shadow: none;
+}
+
+p, div.excerpt{
+  line-height: 1.7;
+  font-weight:300;
+}
+
+div.excerpt{
+  font-size: 0.9rem;
+}
+
+.site-header .site-title {
+  font-weight: 400;
+}
+
+img{
+  display: block;
+  margin: 0 auto;
+}
+
+a{
+  color:#337ab7
+}
+
+@media screen and (max-width: 768px) {
+  li {
+      font-size: 0.8em
+  }
+}
+
+@media screen and (max-width: 450px) {
+  li {
+      font-size: 0.9em
+  }
+}
