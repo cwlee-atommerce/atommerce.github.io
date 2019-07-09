@@ -41,9 +41,9 @@ val c: Boolean = false
 
 두가지의 차이점은 다음과 같습니다.
 
->val : 변경이 가능한 변수(mutable)
+>var : 변경이 가능한 변수(mutable)
 
->var : 변경이 불가능한 변수(immutable)
+>val : 변경이 불가능한 변수(immutable)
 
 <br>
 Java와 비교한 예제로도 한번 보시겠습니다.
