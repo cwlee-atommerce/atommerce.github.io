@@ -9,12 +9,12 @@ defaults:
     scope:
       path: "" # an empty string here means all files in the project
     values:
-      image: assets/img/atommerce_logo.svg # 
+      image: assets/img/atommerce_logo.png # 
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  avatar: assets/img/triangle.png
+  avatar: assets/img/atommerce_logo.svg
   color_image: /assets/img/lineart.png # In post when you set color
   favicon: assets/favicon.ico
 
