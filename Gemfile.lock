@@ -234,6 +234,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jekyll-sitemap
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
