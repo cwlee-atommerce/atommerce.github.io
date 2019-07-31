@@ -1,4 +1,4 @@
-###개발환경구성(MacOS)
+### 개발환경구성(MacOS)
 
 1. ruby가 설치되어있는지 확인
 $ ruby -v
@@ -21,7 +21,7 @@ $ bundler install
 6. 프로젝트 시작(성공시 localhost:4000으로 서비스 됨)
 $ bundler exec jelly serve
 
-###포스트 작성
+### 포스트 작성
 
 1. 프로젝트 폴더 안 _posts폴더안 에 “날짜_제목.md”  파일 생성 (다른 포스트 참조)
 
