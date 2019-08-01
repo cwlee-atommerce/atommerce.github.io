@@ -26,20 +26,20 @@
 
 6.프로젝트 시작(성공시 localhost:4000으로 서비스 됨)
 
->$ bundler exec jelly serve
+>$ bundler exec jekyll serve
 
 ### 포스트 작성
 
 1.프로젝트 폴더 안 _posts폴더안 에 “날짜_제목.md”  파일 생성 (다른 포스트 참조)
 
-2.최신 프로젝트 가져오기
-
->$ git pull origin master
-
-3.프로젝트 저장(프로젝트 폴더에서)
+2.프로젝트 저장(프로젝트 폴더에서)
 
 >$ git add .
 >$ git commit -m “커밋메세지 ex)레이아웃 포스트 완성”
+
+3.최신 프로젝트 가져오기
+
+>$ git pull origin master
 
 4.프로젝트 배포
 
