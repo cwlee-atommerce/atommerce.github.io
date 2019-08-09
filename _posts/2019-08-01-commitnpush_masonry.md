@@ -226,8 +226,3 @@ grid-template-rows: repeat(auto-fill, 170px)으로 계속해서 부모의 너비
 <img src="/assets/img/commitnpush/masonry/11.png" style="width: 600px;" alt="masonry(grid)">
 
 기존 10개의 엘리먼트의 배치가 그대로인 상태에서 4개의 엘리먼트가 잘 추가되었습니다. 이러한 레이아웃이 적용된 대표적인 사이트가 <a href="https://www.pinterest.co.kr/">핀터레스트</a>입니다. 다음에 기회가 된다면 더 재미있고 참신한 레이아웃을 다뤄보길 기대하며 이쯤에서 마무리 짓겠습니다.
-
-
-
-
-
